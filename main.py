@@ -28,26 +28,18 @@ def draw_cards(cards):
 def main():
     game = poker.Poker()
     d1 = game.current_deck
-    game.deal_cards()
-
-    card1 = game.player_one.hand[0]
-    card1.set_y(SCREEN_HEIGHT - card1.get_height())
-    card1.set_x(SCREEN_WIDTH)
-
-    card2 = game.player_one.hand[1]
-    card2.set_y(SCREEN_HEIGHT - card1.get_height())
-    card2.set_x(SCREEN_WIDTH)
+    game.deal_cards(SCREEN_HEIGHT, SCREEN_WIDTH)
 
     player1 = game.player_one
 
     while 1:
-        draw_cards((card1, card2))
+        draw_cards(player1.hand)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit(1)
 
         game_display.fill(white)
-        redraw_window((card1, card2))
+        redraw_window(player1.hand)
 
         # in doing some reading, this is a super slow way to update
         # apparently we can choose to update only the part of the screen
