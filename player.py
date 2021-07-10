@@ -1,8 +1,8 @@
 import deck
 
 class Player:
-    def __init__(self, card1, card2):
-        self.hand = (card1, card2)
+    def __init__(self):
+        self.hand = []
         self.chips = 0
 
     def get_card1(self):

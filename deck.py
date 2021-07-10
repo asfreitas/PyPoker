@@ -1,11 +1,11 @@
 import pygame
 import os
 import random
+
 suits = ['hearts', 
          'clubs', 
          'spades', 
          'diamonds']
-
 
 ranks = ['2',
          '3',
@@ -20,6 +20,7 @@ ranks = ['2',
          'queen',
          'king',
          'ace']
+         
 class Card:
     def __init__(self, suit, rank):
         self.suit = suit
