@@ -8,6 +8,12 @@ SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 600
 game_display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 white = (255,255,255)
+
+def redraw_window(cards):
+    card1, card2 = cards
+    card1.draw(game_display)
+    card2.draw(game_display)
+
 def main():
     d1 = deck.Deck()
 
@@ -23,14 +29,13 @@ def main():
 
     while 1:
         give_cards((card1, card2))
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
 
         game_display.fill(white)
-        game_display.blit(card1.image, (card1.x,card1.y))
-        game_display.blit(card2.image, (card2.x,card2.y))
+        redraw_window((card1, card2))
+
 
         pygame.display.update()
 

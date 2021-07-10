@@ -58,6 +58,8 @@ class Card:
     def set_x(self, x):
         self.x = x
 
+    def draw(self, game_display):
+        game_display.blit(self.image, (self.x,self.y))
 
 class Deck:
     def __init__(self):
