@@ -2,12 +2,13 @@ import pygame
 import time
 import sys
 
+import constants
 import poker
 
-SCREEN_WIDTH = 1280
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = constants.SCREEN_WIDTH
+SCREEN_HEIGHT = constants.SCREEN_HEIGHT
+WHITE = constants.WHITE
 game_display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-white = (255,255,255)
 
 def redraw_window(cards):
     card1, card2 = cards
@@ -25,20 +26,29 @@ def draw_cards(cards):
     if card1.x == new_position:
         add_card(card2, new_position - card2.get_width() / 2)
 
+
+### 1. Give Players Cards
+### 2. Check for bets/checks
+### 3. Deal flop
+###
+def game_loop(game):
+    game.deal_cards()
+    game.deal_flop()
+
+
 def main():
     game = poker.Poker()
     d1 = game.current_deck
-    game.deal_cards(SCREEN_HEIGHT, SCREEN_WIDTH)
+    game.deal_cards()
 
     player1 = game.player_one
 
     while 1:
-        draw_cards(player1.hand)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit(1)
-
-        game_display.fill(white)
+        game_loop(game)
+        game_display.fill(WHITE)
         redraw_window(player1.hand)
 
         # in doing some reading, this is a super slow way to update

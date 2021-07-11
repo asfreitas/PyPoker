@@ -2,6 +2,7 @@ import pygame
 import os
 import random
 
+import constants
 suits = ['hearts', 
          'clubs', 
          'spades', 
@@ -27,8 +28,11 @@ class Card:
         self.rank = rank
         self.image = pygame.image.load(os.path.join('images/cards', rank + '_' + suit + '.png'))
         self.resize_image(4, 4)
-        self.x = 0
-        self.y = 0
+        self.x = constants.SCREEN_WIDTH
+        self.y = constants.SCREEN_HEIGHT
+        self.new_y = 0
+        self.new_x = 0
+        self.card_waiting_for = None
 
     def resize_image(self, width_scale, height_scale):
         width = self.image.get_width()
@@ -53,6 +57,12 @@ class Card:
     def get_width(self):
         return self.image.get_width()
 
+    def set_new_y(self, y):
+        self.new_y = y
+
+    def set_new_x(self, x):
+        self.new_x = x
+
     def set_y(self, y):
         self.y = y
 
@@ -60,7 +70,13 @@ class Card:
         self.x = x
 
     def draw(self, game_display):
-        game_display.blit(self.image, (self.x,self.y))
+        if self.card_waiting_for == None or self.card_waiting_for.x == self.card_waiting_for.new_x:
+            if self.x > self.new_x:
+                self.move_left()
+            if self.y > self.new_y:
+                self.move_down()
+            game_display.blit(self.image, (self.x,self.y))
+
 
 class Deck:
     def __init__(self):
