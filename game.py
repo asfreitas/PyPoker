@@ -12,7 +12,7 @@ class Game():
 
         self.running, self.playing = True, True
 
-        self.actions = {"left": False, "right": False, "up": False, "down": False}
+        self.actions = {"left": False, "right": False, "up": False, "down": False, 'start': False}
 
         self.dt, self.prev_time = 0, 0
 

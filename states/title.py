@@ -1,5 +1,5 @@
 from states.state import State
-from states.poker import Poker
+from states.preflop import Preflop
 
 class Title(State):
     
@@ -8,7 +8,7 @@ class Title(State):
 
     def update(self, delta_time, actions):
         if actions["start"]:
-            new_state = Poker(self.game)
+            new_state = Preflop(self.game)
             new_state.enter_state()
         self.game.reset_keys()
 

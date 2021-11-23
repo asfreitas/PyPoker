@@ -7,17 +7,19 @@ import constants
 
 
 class Poker(State):
-    def __init__(self):
+    def __init__(self, game):
         State.__init__(self, game)
         self.player_one = player.Player()
         self.current_deck = deck.Deck()
         self.community_cards = []
         self.cards_are_dealt = False
+        self.game_states = []
     def update(self, delta_time, actions):
-        pass
+         pass
 
     def render(self, display):
-        display.fill((255,255,255))
+        pass
+
     def deal_cards(self):
         if self.cards_are_dealt:
             return
