@@ -1,9 +1,9 @@
 import pygame
 import time
 import sys
-
+import game
 import constants
-import poker
+import states.poker
 
 SCREEN_WIDTH = constants.SCREEN_WIDTH
 SCREEN_HEIGHT = constants.SCREEN_HEIGHT
@@ -37,24 +37,29 @@ def game_loop(game):
 
 
 def main():
-    game = poker.Poker()
-    d1 = game.current_deck
-    game.deal_cards()
 
-    player1 = game.player_one
+    g = game.Game()
+    while g.running:
+        g.game_loop()
 
-    while 1:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit(1)
-        game_loop(game)
-        game_display.fill(WHITE)
-        redraw_window(player1.hand)
+    #game = poker.Poker()
+    #d1 = game.current_deck
+    #game.deal_cards()
 
-        # in doing some reading, this is a super slow way to update
-        # apparently we can choose to update only the part of the screen
-        # where objects would be redrawn
-        pygame.display.update()
+    #player1 = game.player_one
+    
+    #while 1:
+    #    for event in pygame.event.get():
+    #        if event.type == pygame.QUIT:
+    #            sys.exit(1)
+    #    game_loop(game)
+    #    game_display.fill(WHITE)
+    #    redraw_window(player1.hand)
+
+    #    # in doing some reading, this is a super slow way to update
+    #    # apparently we can choose to update only the part of the screen
+    #    # where objects would be redrawn
+    #    pygame.display.update()
 
 if __name__=="__main__":
     main()

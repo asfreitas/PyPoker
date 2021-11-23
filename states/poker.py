@@ -1,18 +1,23 @@
+import pygame, os
+from states.state import State
 import deck
 import player
-
 import constants
 
-SCREEN_WIDTH = constants.SCREEN_WIDTH
-SCREEN_HEIGHT = constants.SCREEN_HEIGHT
 
-class Poker:
+
+class Poker(State):
     def __init__(self):
+        State.__init__(self, game)
         self.player_one = player.Player()
         self.current_deck = deck.Deck()
         self.community_cards = []
         self.cards_are_dealt = False
+    def update(self, delta_time, actions):
+        pass
 
+    def render(self, display):
+        display.fill((255,255,255))
     def deal_cards(self):
         if self.cards_are_dealt:
             return
@@ -42,9 +47,6 @@ class Poker:
         card1 = self.current_deck.get_card()
         card2 = self.current_deck.get_card()
         card3 = self.current_deck.get_card()
-
-        #self.move_flop(card1, card2, card3)
-
         self.community_cards.append(card1)
         self.community_cards.append(card2)
         self.community_cards.append(card3)
